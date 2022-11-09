@@ -8,18 +8,17 @@ import com.example.tpexam.DAO.PersonPersist;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Array;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
 
-public class Person {
+public class Person implements Serializable {
     private static PersonPersist persistence = null;
+
     public int id = -1;
     public String firstName = "";
     public String lastName = "";
     public String email = "";
-    public float age = 0;
+    public int age = 0;
 
     public int getId() {
         return id;
@@ -61,11 +60,11 @@ public class Person {
         return this;
     }
 
-    public float getAge() {
+    public int getAge() {
         return age;
     }
 
-    public Person setAge(float age) {
+    public Person setAge(int age) {
         this.age = age;
         return this;
     }
@@ -73,7 +72,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String email, float age) {
+    public Person(String firstName, String lastName, String email, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -120,11 +119,14 @@ public class Person {
 
         if (isNew) {
             output = db.insert(PersonPersist.TABLE_NAME, null, values);
+            this.id = (int) output;
         } else {
             String selection = PersonPersist.ID_COL + " = ?";
             String[] selectionArgs = {String.valueOf(this.id)};
             output = db.update(PersonPersist.TABLE_NAME, values, selection, selectionArgs);
         }
+
+        this.read();
 
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -133,7 +135,6 @@ public class Person {
 
     public Cursor getById() {
         SQLiteDatabase db = persistence.getReadableDatabase();
-
 
         String[] projection = {PersonPersist.ID_COL, PersonPersist.FIRST_NAME_COL, PersonPersist.LAST_NAME_COL, PersonPersist.EMAIL_COL, PersonPersist.AGE_COL};
 
@@ -167,7 +168,7 @@ public class Person {
                 int lastNameIndex = cursor.getColumnIndex(PersonPersist.LAST_NAME_COL);
                 int emailIndex = cursor.getColumnIndex(PersonPersist.EMAIL_COL);
                 int idIndex = cursor.getColumnIndex(PersonPersist.ID_COL);
-                this.age = cursor.getFloat(ageIndex);
+                this.age = cursor.getInt(ageIndex);
                 this.firstName = cursor.getString(firstNameIndex);
                 this.lastName = cursor.getString(lastNameIndex);
                 this.email = cursor.getString(emailIndex);
@@ -252,21 +253,16 @@ public class Person {
         ArrayList<Person> people = null;
 
         String[] splitInput = input.split(" ");
-        System.out.println(Arrays.toString(splitInput));
 
         StringBuilder selection = new StringBuilder();
 
-        for(String s:splitInput){
-            try{
-                Float.parseFloat(s);
-                selection.append(String.format("%s = %s or ",PersonPersist.AGE_COL,s));
+        for (String s : splitInput) {
+            try {
+                Integer.parseInt(s);
+                selection.append(String.format("%s = %s or ", PersonPersist.AGE_COL, s));
+            } catch (Exception ignored) {
+                selection.append(String.format("%s like '%%%s%%' or %s like '%%%s%%' or %s like '%%%s%%' or ", PersonPersist.FIRST_NAME_COL, s, PersonPersist.LAST_NAME_COL, s, PersonPersist.EMAIL_COL, s));
             }
-            catch(Exception ignored){
-            }
-            selection.append(String.format("%s like '%%%s%%' or %s like '%%%s%%' or %s like '%%%s%%' or "
-                    ,PersonPersist.FIRST_NAME_COL,s
-                    ,PersonPersist.LAST_NAME_COL,s
-                    ,PersonPersist.EMAIL_COL,s));
         }
 
         String selectionString = (String) selection.subSequence(0, selection.length() - 3);
@@ -293,7 +289,7 @@ public class Person {
         while (cursor.moveToNext()) {
             try {
                 Person tempPerson = new Person();
-                tempPerson.age = cursor.getFloat(ageIndex);
+                tempPerson.age = cursor.getInt(ageIndex);
                 tempPerson.firstName = cursor.getString(firstNameIndex);
                 tempPerson.lastName = cursor.getString(lastNameIndex);
                 tempPerson.email = cursor.getString(emailIndex);

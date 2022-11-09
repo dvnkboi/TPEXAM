@@ -5,8 +5,9 @@
     <string name="cancel">Cancel</string>
     <string name="first_name">first name</string>
     <string name="last_name">last name</string>
-    <string name="email">email</string>
     <string name="age">age</string>
     <string name="delete">delete</string>
     <string name="delete_person">Deleting a person</string>
+    <string name="edit">edit</string>
+    <string name="email">email</string>
 </resources>

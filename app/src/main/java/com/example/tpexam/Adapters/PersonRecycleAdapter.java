@@ -21,6 +21,7 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
     private ArrayList<Person> localDataSet;
 
     private final PersonRecycleViewClickListener listener;
+    private String search;
 
     public interface PersonRecycleViewClickListener {
         void onDeleteClicked(Person person);
@@ -130,16 +131,23 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
     }
 
     public void append(Person p) {
+        p.save();
         localDataSet.add(p);
         this.notifyItemInserted(localDataSet.size() - 1);
-        p.save();
     }
 
     public void delete(Person p) {
         int index = localDataSet.indexOf(p);
         localDataSet.remove(index);
-        this.notifyItemRemoved(index);
         p.delete();
+        this.notifyItemRemoved(index);
+    }
+
+    public void edit(Person p) {
+        p.save();
+        int index = localDataSet.indexOf(p);
+        localDataSet.set(index, p);
+        this.notifyItemChanged(index);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -152,13 +160,19 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
         }
     }
 
+    public void refresh() {
+        search(search);
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     public void search(String input) {
-        if(Objects.equals(input, "")){
+        search = input;
+        if (Objects.equals(search, "")) {
             readAll();
-        };
+        }
+        ;
         try {
-            localDataSet = Person.search(input);
+            localDataSet = Person.search(search);
             this.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();

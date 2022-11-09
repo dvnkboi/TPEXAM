@@ -10,10 +10,11 @@
         <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/drawable/rounded_rectangle_danger_sm.xml" value="0.225" />
         <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/drawable/rounded_rectangle_sm.xml" value="0.225" />
         <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout-v26/person_list_item.xml" value="0.21822916666666667" />
-        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/activity_main.xml" value="0.5439560439560439" />
-        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/add_person_dialog_box.xml" value="0.5" />
+        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/activity_edit.xml" value="0.33" />
+        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/add_person_dialog_box.xml" value="0.33" />
         <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/delete_person_dialog_box.xml" value="0.33" />
-        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/person_list_item.xml" value="0.67" />
+        <entry key="..\:/Users/Ayman/Documents/code projects/8th circle of hell/TPEXAM/app/src/main/res/layout/person_list_item.xml" value="0.33" />
       </map>
     </option>
   </component>

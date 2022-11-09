@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="@drawable/rounded_rectangle">
+              android:background="@drawable/rounded_rectangle"
+              android:padding="8dp">
 
     <TextView
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="16dp"
             android:hint="@string/first_name"
             android:autofillHints="name"/>
 
@@ -66,7 +66,7 @@
 
     <EditText
             android:id="@+id/ageInput"
-            android:inputType="textShortMessage"
+            android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

@@ -46,6 +46,14 @@ public class AddPersonDialogFragment extends DialogFragment {
     }
 
     private boolean inputsValid(){
+        if (firstNameInput.getText().toString().trim().equals("")) {
+            return false;
+        }
+
+        if (lastNameInput.getText().toString().trim().equals("")) {
+            return false;
+        }
+
         try {
             Integer.parseInt(ageInput.getText().toString());
         } catch (final NumberFormatException e) {
@@ -70,7 +78,7 @@ public class AddPersonDialogFragment extends DialogFragment {
         try {
             listener = (AddPersonDialogListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(e.getClass().toString()
+            throw new ClassCastException(e.getClass()
                     + " must implement AddPerson");
         }
     }
@@ -139,6 +147,8 @@ public class AddPersonDialogFragment extends DialogFragment {
 
                 validateInput(ageInput);
                 validateInput(emailInput);
+                validateInput(firstNameInput);
+                validateInput(lastNameInput);
             }
         });
 
