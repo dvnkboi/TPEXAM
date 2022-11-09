@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:background="@drawable/rounded_rectangle"
+              android:elevation="8dp"
+              android:paddingLeft="10dp"
+              android:paddingTop="5dp"
+              android:paddingBottom="5dp"
+              android:paddingRight="10dp"
+              android:layout_marginLeft="10dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginRight="10dp"
+              android:layout_marginBottom="10dp"
+              android:gravity="center_vertical"
+              android:clickable="true"
+              android:focusable="true"
+              android:id="@+id/mainLayout"
+              android:foreground="?android:attr/selectableItemBackground"
+        >
+
+    <Space
+            android:layout_width="6dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="28sp"
+                android:id="@+id/age"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:textStyle="bold"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Space
+            android:layout_width="6dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            />
+
+    <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="start|center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="0.7">
+
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="2dp"
+                android:textColor="#4d4d4d"/>
+
+        <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/deleteButton"
+            android:layout_gravity="center_vertical|end"
+            app:rippleColor="#59CFCFCF"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            app:iconPadding="0dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:minHeight="34dp"
+            android:minWidth="66dp"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
+            android:background="@drawable/rounded_rectangle_danger_sm"
+            android:elevation="10dp"
+            android:outlineProvider="paddedBounds"
+            android:textColor="#FFFFFF"/>
+
+    <Space
+            android:layout_width="6dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            />
+</LinearLayout>  
