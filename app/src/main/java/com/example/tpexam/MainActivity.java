@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -88,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements AddPersonDialogFr
                         @Override
                         public void onItemLongPress(Person person) {
                             openEditActivity(person);
+                        }
+
+                        @Override
+                        public void onItemClicked(Person person) {
+                            Toast.makeText(MainActivity.this, "Long press to edit " + person.getName(), Toast.LENGTH_SHORT).show();
                         }
 
                     });

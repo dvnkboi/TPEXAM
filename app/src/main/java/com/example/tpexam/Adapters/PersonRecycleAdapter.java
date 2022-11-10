@@ -29,6 +29,8 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
         void onDeleteLongPress(Person person);
 
         void onItemLongPress(Person person);
+
+        void onItemClicked(Person person);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
@@ -53,6 +55,7 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
             deleteButton.setOnClickListener(this);
             deleteButton.setOnLongClickListener(this);
             mainLayout.setOnLongClickListener(this);
+            mainLayout.setOnClickListener(this);
         }
 
         public TextView getNameTextView() {
@@ -81,11 +84,13 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
 
         @Override
         public void onClick(View view) {
+            Person p = new Person()
+                    .setId(id);
+            p.read();
             if (view.getId() == deleteButton.getId()) {
-                Person p = new Person()
-                        .setId(id);
-                p.read();
                 listenerRef.get().onDeleteClicked(p);
+            } else {
+                listenerRef.get().onItemClicked(p);
             }
         }
 
@@ -167,7 +172,7 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
     @SuppressLint("NotifyDataSetChanged")
     public void search(String input) {
         search = input;
-        if (Objects.equals(search, "")) {
+        if (Objects.equals(search.trim(), "")) {
             readAll();
         }
         ;

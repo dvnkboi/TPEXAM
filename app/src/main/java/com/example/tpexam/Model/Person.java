@@ -301,7 +301,6 @@ public class Person implements Serializable {
         }
 
         cursor.close();
-
         return result;
     }
 }

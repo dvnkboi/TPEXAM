@@ -79,12 +79,7 @@ public class EditActivity extends AppCompatActivity {
 
     public void onEditButtonClick(View view) {
         Intent intent = new Intent();
-        intent.putExtra("editPerson", new Person()
-                .setId(editPerson.getId())
-                .setFirstName(getEditTextFirstName())
-                .setLastName(getEditTextLastName())
-                .setEmail(getEditTextEmail())
-                .setAge(getEditTextAge()));
+        intent.putExtra("editPerson", new Person().setId(editPerson.getId()).setFirstName(getEditTextFirstName()).setLastName(getEditTextLastName()).setEmail(getEditTextEmail()).setAge(getEditTextAge()));
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -96,13 +91,11 @@ public class EditActivity extends AppCompatActivity {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 editPersonConfirm.setEnabled(inputsValid());
             }
         });
