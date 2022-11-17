@@ -45,7 +45,7 @@ public class AddPersonDialogFragment extends DialogFragment {
         return ageInput.getText().toString();
     }
 
-    private boolean inputsValid(){
+    private boolean inputsValid() {
         if (firstNameInput.getText().toString().trim().equals("")) {
             return false;
         }
@@ -62,7 +62,6 @@ public class AddPersonDialogFragment extends DialogFragment {
 
         return android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.getText()).matches();
     }
-
 
     public interface AddPersonDialogListener {
         public void onAddPersonDialogConfirm(AddPersonDialogFragment dialog);
@@ -158,11 +157,14 @@ public class AddPersonDialogFragment extends DialogFragment {
     private void validateInput(EditText input) {
         input.addTextChangedListener(new TextWatcher() {
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
+
             @Override
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {

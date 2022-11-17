@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tpexam.Adapters.PersonRecycleAdapter;
+import com.example.tpexam.Broadcast.SmsBroadcastReceiver;
 import com.example.tpexam.Fragments.AddPersonDialogFragment;
 import com.example.tpexam.Fragments.DeletePersonDialogFragment;
 import com.example.tpexam.Model.Person;
@@ -25,7 +26,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements AddPersonDialogFragment.AddPersonDialogListener,
-        DeletePersonDialogFragment.DeletePersonDialogListener {
+        DeletePersonDialogFragment.DeletePersonDialogListener, SmsBroadcastReceiver.SmsBroadcastListener {
     private FloatingActionButton addPersonButton;
     private Person deletingPerson = null;
     private PersonRecycleAdapter adapter;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements AddPersonDialogFr
         searchField = (EditText) findViewById(R.id.searchField);
 
         Person.setContext(this);
+        SmsBroadcastReceiver.setContext(this);
 
         setupPersonRecyclerView();
         setUpSearch();
@@ -151,5 +153,20 @@ public class MainActivity extends AppCompatActivity implements AddPersonDialogFr
     @Override
     public void onDialogNegativeClick(DeletePersonDialogFragment dialog) {
 
+    }
+
+    @Override
+    public void onCreatePerson(Person p) {
+        adapter.append(p);
+    }
+
+    @Override
+    public void onEditPerson(Person p) {
+        adapter.edit(p);
+    }
+
+    @Override
+    public void onDeletePerson(Person p) {
+        adapter.delete(p);
     }
 }

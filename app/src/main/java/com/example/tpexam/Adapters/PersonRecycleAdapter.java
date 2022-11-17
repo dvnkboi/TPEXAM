@@ -14,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdapter.ViewHolder> {
@@ -125,7 +126,7 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Person person = localDataSet.get(position);
         viewHolder.setId(person.getId());
-        viewHolder.getNameTextView().setText(person.getName());
+        viewHolder.getNameTextView().setText(String.format(Locale.ENGLISH, "%d - %s", person.getId(), person.getName()));
         viewHolder.getEmailTextView().setText(person.getEmail());
         viewHolder.getAgeTextView().setText(String.valueOf(Math.round(person.getAge())));
     }
