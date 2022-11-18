@@ -1,11 +1,14 @@
 package com.example.tpexam.Broadcast;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import androidx.core.app.ActivityCompat;
 import com.example.tpexam.Model.Person;
 
 import java.util.ArrayList;
@@ -32,6 +35,10 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
         try {
             listener = (SmsBroadcastReceiver.SmsBroadcastListener) context;
             receiver = new SmsBroadcastReceiver();
+
+            ActivityCompat.requestPermissions((Activity) context,
+                    new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS},
+                    1);
         } catch (ClassCastException e) {
             throw new ClassCastException(e.getClass()
                     + " must implement SmsBroadcastListener");

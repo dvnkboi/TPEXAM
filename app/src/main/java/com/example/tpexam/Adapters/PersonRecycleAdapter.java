@@ -176,7 +176,6 @@ public class PersonRecycleAdapter extends RecyclerView.Adapter<PersonRecycleAdap
         if (Objects.equals(search.trim(), "")) {
             readAll();
         }
-        ;
         try {
             localDataSet = Person.search(search);
             this.notifyDataSetChanged();

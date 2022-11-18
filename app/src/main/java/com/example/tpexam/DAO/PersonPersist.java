@@ -19,7 +19,7 @@ public class PersonPersist extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME + " (" + ID_COL + " INTEGER PRIMARY KEY, " + FIRST_NAME_COL + " TEXT," + LAST_NAME_COL + " TEXT," + AGE_COL + " FLOAT," + EMAIL_COL + " TEXT)";
+        String query = String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s TEXT,%s TEXT,%s FLOAT,%s TEXT)", TABLE_NAME, ID_COL, FIRST_NAME_COL, LAST_NAME_COL, AGE_COL, EMAIL_COL);
         db.execSQL(query);
     }
 
